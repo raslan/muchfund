@@ -1,0 +1,8 @@
+branchName: full
+branches:
+  - label: enhancement
+    prefix: feat/
+  - label: bug
+    prefix: fix/
+  - label: '*'
+    skip: true
