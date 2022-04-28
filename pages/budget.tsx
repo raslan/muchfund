@@ -91,77 +91,78 @@ const Budget: NextPage = () => {
     <div>
       <Head>
         <title>muchfund</title>
-        <meta name='description' content='A budgeting app for individuals' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta name="description" content="A budgeting app for individuals" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      {isClient && (
-        <>
-          <Navbar />
-          <Sidebar>
-            <h1 className='text-6xl mb-10'>Budget</h1>
-            <div className='text-5xl flex mb-8'>
-              <h2 className=' '>Income</h2>
-              <button
-                className='inline max-w-fit'
-                onClick={() => {
-                  setShowForm(!showForm);
-                }}
-              >
-                {showForm ? "-" : "+"}
-              </button>
-            </div>
-
-            {/* TODO: Move to Modal */}
-            {showForm && (
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor=''>Name</label>
-                <input
-                  type='text'
-                  className='block'
-                  {...register("name", { required: true })}
-                />
-
-                <label htmlFor=''>Amount</label>
-                <input
-                  type='text'
-                  className='block'
-                  {...register("amount", { required: true })}
-                />
-                {errors.amount && <span>Amount is required</span>}
-                <input
-                  type='submit'
-                  className='text-orange-400 cursor-pointer block'
-                  value='Add'
-                />
-                <select
-                  defaultValue={AllCurrencies.USD.code}
-                  {...register("currency")}
+      <main className="h-full w-full flex flex-col justify-center px-3">
+        {isClient && (
+          <>
+            <Navbar />
+            <Sidebar>
+              <h1 className="text-6xl mb-10">Budget</h1>
+              <div className="text-5xl flex mb-8">
+                <h2 className=" ">Income</h2>
+                <button
+                  className="inline max-w-fit"
+                  onClick={() => {
+                    setShowForm(!showForm);
+                  }}
                 >
-                  {currencies}
-                </select>
-              </form>
-            )}
+                  {showForm ? "-" : "+"}
+                </button>
+              </div>
 
-            <ul className='mb-8'>
-              {income.map((item) => (
-                <li key={item.name} className='my-4'>
-                  {item.name} {toFormat(item.amount, transformer)}
-                </li>
-              ))}
-            </ul>
+              {/* TODO: Move to Modal */}
+              {showForm && (
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <label htmlFor="">Name</label>
+                  <input
+                    type="text"
+                    className="block"
+                    {...register("name", { required: true })}
+                  />
 
-            <h2 className='text-5xl mb-8'>Expense</h2>
-            <ul className='mb-10'>
-              {expenses.map((item) => (
-                <li key={item.name} className='mb-4'>
-                  {item.name} {item.amount}
-                </li>
-              ))}
-            </ul>
-          </Sidebar>
-        </>
-      )}
+                  <label htmlFor="">Amount</label>
+                  <input
+                    type="text"
+                    className="block"
+                    {...register("amount", { required: true })}
+                  />
+                  {errors.amount && <span>Amount is required</span>}
+                  <input
+                    type="submit"
+                    className="text-orange-400 cursor-pointer block"
+                    value="Add"
+                  />
+                  <select
+                    defaultValue={AllCurrencies.USD.code}
+                    {...register("currency")}
+                  >
+                    {currencies}
+                  </select>
+                </form>
+              )}
+
+              <ul className="mb-8">
+                {income.map((item) => (
+                  <li key={item.name} className="my-4">
+                    {item.name} {toFormat(item.amount, transformer)}
+                  </li>
+                ))}
+              </ul>
+
+              <h2 className="text-5xl mb-8">Expense</h2>
+              <ul className="mb-10">
+                {expenses.map((item) => (
+                  <li key={item.name} className="mb-4">
+                    {item.name} {item.amount}
+                  </li>
+                ))}
+              </ul>
+            </Sidebar>
+          </>
+        )}
+      </main>
     </div>
   );
 };
