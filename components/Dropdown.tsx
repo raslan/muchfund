@@ -1,14 +1,18 @@
-import { Popover, Transition } from "@headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const Dropdown = () => (
-  <Popover className='dropdown dropdown-end'>
-    <Popover.Button tabIndex={0} className='btn btn-ghost btn-circle avatar'>
+  <Menu as='div' className='dropdown dropdown-end'>
+    <Menu.Button
+      as='label'
+      tabIndex={0}
+      className='btn btn-ghost btn-circle avatar'
+    >
       <div className='w-10 rounded-full'>
         <img src='https://api.lorem.space/image/face?hash=33791' />
       </div>
-    </Popover.Button>
-    <Popover.Panel className='mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-md w-52 border-2 border-gray-700'>
+    </Menu.Button>
+    <Menu.Items className='mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-md w-52 border-2 border-gray-700'>
       <Transition
         as='div'
         enter='transition ease-out duration-500'
@@ -20,29 +24,29 @@ const Dropdown = () => (
         show
         appear
       >
-        <Transition.Child>
+        <Menu.Item>
           <li>
             <button className='justify-between btn btn-ghost'>Profile</button>
           </li>
-        </Transition.Child>
-        <Transition.Child>
+        </Menu.Item>
+        <Menu.Item>
           <li>
             <button className='justify-between btn btn-ghost'>Settings</button>
           </li>
-        </Transition.Child>
-        <Transition.Child>
+        </Menu.Item>
+        <Menu.Item>
           <li>
             <button className='justify-between btn btn-ghost'>Logout</button>
           </li>
-        </Transition.Child>
-        <Transition.Child>
+        </Menu.Item>
+        <Menu.Item>
           <li>
             <ThemeSwitcher />
           </li>
-        </Transition.Child>
+        </Menu.Item>
       </Transition>
-    </Popover.Panel>
-  </Popover>
+    </Menu.Items>
+  </Menu>
 );
 
 export default Dropdown;
