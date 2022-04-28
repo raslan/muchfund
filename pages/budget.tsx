@@ -1,13 +1,14 @@
-import Navbar from "components/Navbar";
-import Sidebar from "components/Sidebar";
-import { NextPage } from "next";
-import Head from "next/head";
-import { useState } from "react";
-import { useIsClient } from "usehooks-ts";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { dinero, toFormat, Currency } from "dinero.js";
-import * as AllCurrencies from "@dinero.js/currencies";
-import { CurrencyCode, getCurrency } from "lib/dinero";
+import Navbar from 'components/Navbar';
+import Sidebar from 'components/Sidebar';
+import Form from 'components/Budget/Form';
+import { NextPage } from 'next';
+import Head from 'next/head';
+import { useState } from 'react';
+import { useIsClient } from 'usehooks-ts';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { dinero, toFormat, subtract, add, Currency, Dinero } from 'dinero.js';
+import * as AllCurrencies from '@dinero.js/currencies';
+import { CurrencyCode, getCurrency } from 'lib/dinero';
 
 // TODO: Refactor to separate components
 
@@ -28,19 +29,26 @@ const transformer = ({
 
 const incomeStreams = [
   {
-    name: "Salary",
+    name: 'Salary',
     amount: dinero({ amount: 100000, currency: AllCurrencies.USD }),
   },
   {
-    name: "Youtube Channel",
+    name: 'Youtube Channel',
     amount: dinero({ amount: 25000, currency: AllCurrencies.USD }),
   },
 ];
 
 const expensesList = [
-  { name: "Rent", amount: 120 },
-  { name: "Food", amount: 50 },
+  {
+    name: 'Rent',
+    amount: dinero({ amount: 12000, currency: AllCurrencies.USD }),
+  },
+  {
+    name: 'Food',
+    amount: dinero({ amount: 5000, currency: AllCurrencies.USD }),
+  },
 ];
+const initialBudget = 1080 * 100;
 
 const Budget: NextPage = () => {
   type Inputs = {
@@ -50,36 +58,27 @@ const Budget: NextPage = () => {
   };
   const [income, setIncome] = useState(incomeStreams);
   const [expenses, setExpenses] = useState(expensesList);
-  const [showForm, setShowForm] = useState(true);
-
+  const [showIncome, setShowIncome] = useState(true);
+  const [showExpenses, setShowExpenses] = useState(true);
+  const [totalBudget, setTotalBudget] = useState(
+    dinero({ amount: initialBudget, currency: AllCurrencies.USD })
+  );
   const isClient = useIsClient();
 
+  const addExpense = (amount: Dinero<number>) => {
+    const newTotalBudget = subtract(totalBudget, amount);
+    setTotalBudget(newTotalBudget);
+  };
+  const addIncome = (amount: Dinero<number>) => {
+    const newTotalBudget = add(totalBudget, amount);
+    setTotalBudget(newTotalBudget);
+  };
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const currency = getCurrency(data.currency);
-    console.log(currency);
-    // TODO: Unit Test computed dinero object
-    const newItem = {
-      name: data.name,
-      amount: dinero({
-        amount: +data.amount * currency.base ** currency.exponent,
-        currency,
-      }),
-    };
-    const newIncome = income.concat(newItem);
-    setIncome(newIncome);
-
-    // TODO: watch currency
-
-    // TODO: Use Immer
-    // const dineroObject =
-    // setIncome(newIncome);
-  };
   // TODO: Use https://headlessui.dev/react/combobox
   const currencies = Object.entries(AllCurrencies).map(([key, value]) => (
     <option key={key} value={key}>
@@ -91,74 +90,76 @@ const Budget: NextPage = () => {
     <div>
       <Head>
         <title>muchfund</title>
-        <meta name="description" content="A budgeting app for individuals" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name='description' content='A budgeting app for individuals' />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className="h-full w-full flex flex-col justify-center px-3">
+      <main className='h-full w-full flex flex-col justify-center px-3'>
         {isClient && (
           <>
             <Navbar />
             <Sidebar>
-              <h1 className="text-6xl mb-10">Budget</h1>
-              <div className="text-5xl flex mb-8">
-                <h2 className=" ">Income</h2>
+              <h1 className='text-6xl mb-10'>Budget</h1>
+              <div className='text-5xl flex mb-8'>
+                <h2 className=' '>Income</h2>
                 <button
-                  className="inline max-w-fit"
+                  className='inline max-w-fit'
                   onClick={() => {
-                    setShowForm(!showForm);
+                    setShowIncome(!showIncome);
                   }}
                 >
-                  {showForm ? "-" : "+"}
+                  {showIncome ? '-' : '+'}
                 </button>
               </div>
 
               {/* TODO: Move to Modal */}
-              {showForm && (
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <label htmlFor="">Name</label>
-                  <input
-                    type="text"
-                    className="block"
-                    {...register("name", { required: true })}
-                  />
-
-                  <label htmlFor="">Amount</label>
-                  <input
-                    type="text"
-                    className="block"
-                    {...register("amount", { required: true })}
-                  />
-                  {errors.amount && <span>Amount is required</span>}
-                  <input
-                    type="submit"
-                    className="text-orange-400 cursor-pointer block"
-                    value="Add"
-                  />
-                  <select
-                    defaultValue={AllCurrencies.USD.code}
-                    {...register("currency")}
-                  >
-                    {currencies}
-                  </select>
-                </form>
+              {showIncome && (
+                <Form
+                  list={income}
+                  setList={setIncome}
+                  budgetMutate={addIncome}
+                ></Form>
               )}
 
-              <ul className="mb-8">
+              <ul className='mb-8'>
                 {income.map((item) => (
-                  <li key={item.name} className="my-4">
+                  <li key={item.name} className='my-4'>
                     {item.name} {toFormat(item.amount, transformer)}
                   </li>
                 ))}
               </ul>
-
-              <h2 className="text-5xl mb-8">Expense</h2>
-              <ul className="mb-10">
+              <div className='text-5xl flex mb-8'>
+                <h2 className=' '>Expenses</h2>
+                <button
+                  className='inline max-w-fit'
+                  onClick={() => {
+                    setShowExpenses(!showExpenses);
+                  }}
+                >
+                  {showExpenses ? '-' : '+'}
+                </button>
+              </div>
+              {/* TODO: Move to Modal */}
+              {showExpenses && (
+                <Form
+                  list={expenses}
+                  setList={setExpenses}
+                  budgetMutate={addExpense}
+                ></Form>
+              )}
+              <ul className='mb-10'>
                 {expenses.map((item) => (
-                  <li key={item.name} className="mb-4">
-                    {item.name} {item.amount}
+                  <li key={item.name} className='mb-4'>
+                    {item.name} {toFormat(item.amount, transformer)}
                   </li>
                 ))}
               </ul>
+              {/* TODO: add onClick = {calculateBudget} */}
+              <div>
+                <h2 className='text-5xl flex mb-8'>Total Budget</h2>
+                <h3 className='text-2xl'>
+                  {toFormat(totalBudget, transformer)}
+                </h3>
+              </div>
             </Sidebar>
           </>
         )}
