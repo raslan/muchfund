@@ -9,7 +9,7 @@ const Dropdown = () => (
       className='btn btn-ghost btn-circle avatar'
     >
       <div className='w-10 rounded-full'>
-        <img src='https://api.lorem.space/image/face?hash=33791' />
+        <img src={`https://avatars.dicebear.com/api/initials/AR.svg`} />
       </div>
     </Menu.Button>
     <Menu.Items className='mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-md w-52 border-2 border-gray-700'>
