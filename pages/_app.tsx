@@ -1,5 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
 import { UserProvider } from "@auth0/nextjs-auth0";
+import Layout from "components/Layout";
 import client from "lib/apollo";
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
@@ -14,9 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <UserProvider>
         <ApolloProvider client={client}>
-          <div className='min-h-screen w-full'>
+          <Layout>
             <Component {...pageProps} />
-          </div>
+          </Layout>
         </ApolloProvider>
       </UserProvider>
     </ThemeProvider>

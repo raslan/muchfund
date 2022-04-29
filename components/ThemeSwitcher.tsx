@@ -11,7 +11,7 @@ const ThemeSwitcher = () => {
         setTheme(theme === "light" ? "dark" : "light");
       }}
     >
-      {theme === "light" ? "Light" : "Dark"}
+      {theme === "dark" ? "Light" : "Dark"}
       <label className='swap swap-rotate'>
         <svg
           className={`${
