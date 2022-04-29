@@ -64,7 +64,13 @@ const Budget: NextPage = () => {
     dinero({ amount: initialBudget, currency: AllCurrencies.USD })
   );
   const isClient = useIsClient();
-
+  // TODO: Doesn't work on different currencies
+  // need to check out dinero's:
+  //  * converters. link: https://v2.dinerojs.com/docs/api/conversions/convert
+  //  * custom calculators.
+  // need to figure out how we will manage fetching of rates periodically
+  // will we fetch rates each session or just fetch it periodically and store it in database get rates for currencies on demand
+  // should we separate expenses and income based on currency?
   const addExpense = (amount: Dinero<number>) => {
     const newTotalBudget = subtract(totalBudget, amount);
     setTotalBudget(newTotalBudget);
