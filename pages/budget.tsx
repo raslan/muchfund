@@ -12,12 +12,6 @@ import { CurrencyCode, getCurrency } from 'lib/dinero';
 
 // TODO: Refactor to separate components
 
-/* need to handle
-   users using cents ex: $100.50
-   multiply amount by exponent? ex: user input $100, in dinero {amount: 10000, currency: USD}
-
-*/
-
 const price = dinero({ amount: 100, currency: AllCurrencies.USD });
 const transformer = ({
   amount,
@@ -159,7 +153,6 @@ const Budget: NextPage = () => {
                   </li>
                 ))}
               </ul>
-              {/* TODO: add onClick = {calculateBudget} */}
               <div>
                 <h2 className='text-5xl flex mb-8'>Total Budget</h2>
                 <h3 className='text-2xl'>
