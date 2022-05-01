@@ -41,7 +41,7 @@ const Select = ({
               <div className='relative w-full'>
                 <div className='focus:outline-none cursor-default overflow-hidden  bg-transparent text-base-content text-left focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-300 sm:text-sm border border-base-content'>
                   <Combobox.Input
-                    className='border-none py-3 pl-3 pr-10 text-sm leading-5  bg-transparent text-base-content focus:ring-0'
+                    className='border-none py-3 pl-3 pr-10 text-sm leading-5  bg-transparent text-base-content focus:ring-0 w-full'
                     onChange={(event) => setQuery(event.target.value)}
                   />
                   <Combobox.Button className='absolute inset-y-0 right-0 flex items-center pr-2'>
