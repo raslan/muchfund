@@ -1,8 +1,10 @@
-import Stat from "components/Stat";
-import { useTheme } from "next-themes";
+import Stat from 'components/Stat';
+import { useTheme } from 'next-themes';
+import useBudgetStore from 'store/budget';
 
 const DashboardStats = () => {
   const { resolvedTheme: theme } = useTheme();
+  const { totalBudget, totalExpenses, totalIncome } = useBudgetStore();
   return (
     <>
       <label
@@ -11,25 +13,22 @@ const DashboardStats = () => {
       >
         Open drawer
       </label>
-      <div className='grid max-w-7xl grid-cols-1 gap-5 md:grid-cols-2 lg:px-3 xl:grid-cols-3'>
+      <div className='grid max-w-7xl grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3'>
         <Stat
-          transparent={theme === "dark"}
-          title='Total'
-          value='$1,000,000'
+          transparent={theme === 'dark'}
+          title='Budget'
+          value={totalBudget}
+        />
+        <Stat
+          transparent={theme === 'dark'}
+          title='Income'
+          value={totalIncome}
+        />
+        <Stat
+          transparent={theme === 'dark'}
+          title='Expenses'
+          value={totalExpenses}
           negative
-          desc='37% lower than last month'
-        />
-        <Stat
-          transparent={theme === "dark"}
-          title='Spent'
-          value='$1,000'
-          desc='10% lower than last month'
-        />
-        <Stat
-          transparent={theme === "dark"}
-          title='Left'
-          value='$999,000'
-          desc='15% higher than last month'
         />
       </div>
     </>
