@@ -1,21 +1,10 @@
-import { useEffect } from "react";
-
-const Stat = ({
-  title,
-  value,
-  desc,
-  negative = false,
-  transparent = false,
-}: Props) => {
-  useEffect(() => {
-    console.log(transparent);
-  }, [transparent]);
+const Stat = ({ title, value, desc = '', transparent = false }: Props) => {
   return (
     <div
       className={`stat group p-3 gap-2 rounded-md border-2 shadow-sm ${
         transparent
-          ? "border-blue-900 shadow-red-800"
-          : "border-blue-600 shadow-purple-800"
+          ? 'border-blue-900 shadow-red-800'
+          : 'border-blue-600 shadow-purple-800'
       }  lg:max-w-sm`}
     >
       <button className='lg:hidden stat-figure group-hover:grid h-full text-primary justify-center'>
@@ -44,7 +33,7 @@ const Stat = ({
 type Props = {
   title: string;
   value: string;
-  desc: string;
+  desc?: string;
   negative?: boolean;
   transparent?: boolean;
 };
