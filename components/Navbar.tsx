@@ -1,7 +1,7 @@
-import { useUser } from "@auth0/nextjs-auth0";
-import Dropdown from "components/Dropdown";
-import Link from "next/link";
-import Loading from "components/atomic/Loading";
+import { useUser } from '@auth0/nextjs-auth0';
+import Dropdown from 'components/Dropdown';
+import Link from 'next/link';
+import Loading from 'components/atomic/Loading';
 
 const Navbar = () => {
   const { user, isLoading } = useUser();
