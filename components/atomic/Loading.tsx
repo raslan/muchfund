@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const Loading = ({ className, isFullScreen }: Props) => {
   return (
     <div
       className={`${className} ${
         isFullScreen &&
-        " flex flex-col items-center justify-center h-screen p-0 m-0"
+        ' flex flex-col items-center justify-center h-screen p-0 m-0'
       }`}
     >
       <svg
