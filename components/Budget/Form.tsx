@@ -1,12 +1,14 @@
 import * as AllCurrencies from '@dinero.js/currencies';
+import Input from 'components/atomic/Input';
+import Select from 'components/atomic/Select';
 import { dinero, Dinero } from 'dinero.js';
 import { CurrencyCode, getCurrency } from 'lib/dinero';
 import { Dispatch, SetStateAction } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-const Form = ({ list, setList, budgetMutate }: Props) => {
+const Form = ({ className, list, setList, budgetMutate, title }: Props) => {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
     resetField,
@@ -26,44 +28,56 @@ const Form = ({ list, setList, budgetMutate }: Props) => {
     const newList = list.concat(newItem);
     setList(newList);
     budgetMutate(newItem.amount);
-    // TODO: watch currency
-
-    // TODO: Use Immer
     resetField('name');
     resetField('amount');
   };
 
-  const currencies = Object.entries(AllCurrencies).map(([key, value]) => (
-    <option key={key} value={key}>
-      {key}
-    </option>
-  ));
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor=''>Name</label>
-      <input
-        type='text'
-        className='block'
-        {...register('name', { required: true })}
-      />
+    <div
+      className={`${className} bg-base-100 h-screen lg:h-auto max-w-screen-sm w-screen`}
+    >
+      <form
+        className='grid grid-cols-1 gap-2 p-12 pt-24 lg:p-24'
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h1 className='text-3xl font-bold'>{title}</h1>
+        <Input
+          label='Name'
+          errors={errors}
+          control={control}
+          fieldName='name'
+          defaultValue={''}
+          required
+        />
 
-      <label htmlFor=''>Amount</label>
-      <input
-        type='text'
-        className='block'
-        {...register('amount', { required: true })}
-      />
-      {errors.amount && <span>Amount is required</span>}
-      <select defaultValue={AllCurrencies.USD.code} {...register('currency')}>
-        {currencies}
-      </select>
-      <input
-        type='submit'
-        className='text-orange-400 cursor-pointer block'
-        value='Add'
-      />
-    </form>
+        <Input
+          label='Amount'
+          type='number'
+          errors={errors}
+          control={control}
+          fieldName='amount'
+          defaultValue={0}
+          required
+        />
+
+        <Select
+          options={Object.keys(AllCurrencies)}
+          control={control}
+          fieldName='currency'
+          defaultValue='USD'
+          label='Currency'
+          errors={errors}
+          required
+        />
+
+        <button
+          type='submit'
+          className='btn btn-ghost hover:text-base-content bg-primary-focus text-secondary-content mt-3'
+        >
+          Add
+        </button>
+      </form>
+    </div>
   );
 };
 
@@ -93,5 +107,7 @@ type Props = {
   list: BudgetList;
   setList: BudgetListSetter;
   budgetMutate: BudgetMutate;
+  className?: string;
+  title?: string;
 };
 export default Form;
