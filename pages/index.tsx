@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import React, { useState } from 'react';
 import Sidebar from 'components/Sidebar';
-import DashboardStats from 'components/Dashboard/DashboardStats';
+import DashboardStats from 'components/dashboard/DashboardStats';
 import Navbar from 'components/Navbar';
 import { useIsClient } from 'usehooks-ts';
 import Loading from 'components/atomic/Loading';

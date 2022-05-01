@@ -1,8 +1,8 @@
 import * as AllCurrencies from '@dinero.js/currencies';
 import Modal from 'components/atomic/Modal';
 import Table from 'components/atomic/Table';
-import Form from 'components/Budget/Form';
-import DashboardStats from 'components/Dashboard/DashboardStats';
+import Form from 'components/budget/Form';
+import DashboardStats from 'components/dashboard/DashboardStats';
 import Navbar from 'components/Navbar';
 import Sidebar from 'components/Sidebar';
 import {
