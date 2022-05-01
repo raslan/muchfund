@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Link from 'next/link';
 
 const tabs = [
@@ -23,26 +22,6 @@ const tabs = [
       </svg>
     ),
   },
-  // {
-  //   index: 1,
-  //   title: "Transactions",
-  //   icon: (
-  //     <svg
-  //       xmlns='http://www.w3.org/2000/svg'
-  //       className='h-6 w-6'
-  //       fill='none'
-  //       viewBox='0 0 24 24'
-  //       stroke='currentColor'
-  //       strokeWidth={2}
-  //     >
-  //       <path
-  //         strokeLinecap='round'
-  //         strokeLinejoin='round'
-  //         d='M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z'
-  //       />
-  //     </svg>
-  //   ),
-  // },
   {
     index: 2,
     title: 'Budget',
@@ -67,7 +46,6 @@ const tabs = [
 ];
 
 const Sidebar = ({ children }: Props) => {
-  const [activeTab, setActiveTab] = useState(0);
   return (
     <div className='max-w-screen h-0 min-h-screen'>
       <div className='drawer drawer-mobile'>
@@ -82,10 +60,9 @@ const Sidebar = ({ children }: Props) => {
                   <a
                     className={`${
                       window.location.pathname === tab.link
-                        ? 'bg-primary-focus text-primary-content'
+                        ? 'bg-primary-focus text-secondary-content hover:text-base-content'
                         : ''
                     } flex justify-start btn btn-ghost text-left text-base-content`}
-                    // onClick={() => setActiveTab(tab.index)}
                   >
                     <span>{tab.icon}</span>
                     <span>{tab.title}</span>
