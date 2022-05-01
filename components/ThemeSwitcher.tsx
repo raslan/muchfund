@@ -1,5 +1,5 @@
-import React from "react";
-import { useTheme } from "next-themes";
+import React from 'react';
+import { useTheme } from 'next-themes';
 
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
@@ -8,14 +8,14 @@ const ThemeSwitcher = () => {
     <button
       className='btn btn-ghost justify-between'
       onClick={() => {
-        setTheme(theme === "light" ? "dark" : "light");
+        setTheme(theme === 'dark' ? 'light' : 'dark');
       }}
     >
-      {theme === "dark" ? "Light" : "Dark"}
+      {theme === 'dark' ? 'Light' : 'Dark'}
       <label className='swap swap-rotate'>
         <svg
           className={`${
-            theme === "dark" ? "swap-off" : "swap-on"
+            theme === 'dark' ? 'swap-off' : 'swap-on'
           } fill-current w-6 h-6 m-auto`}
           xmlns='http://www.w3.org/2000/svg'
           viewBox='0 0 24 24'
@@ -24,7 +24,7 @@ const ThemeSwitcher = () => {
         </svg>
         <svg
           className={`${
-            theme === "light" ? "swap-off" : "swap-on"
+            theme === 'dark' ? 'swap-on' : 'swap-off'
           } fill-current w-6 h-6 m-auto`}
           xmlns='http://www.w3.org/2000/svg'
           viewBox='0 0 24 24'
