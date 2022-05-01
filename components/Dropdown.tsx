@@ -1,8 +1,8 @@
-import { UserProfile } from "@auth0/nextjs-auth0";
-import { Menu, Transition } from "@headlessui/react";
-import Image from "next/image";
-import Link from "next/link";
-import ThemeSwitcher from "./ThemeSwitcher";
+import { UserProfile } from '@auth0/nextjs-auth0';
+import { Menu, Transition } from '@headlessui/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const Dropdown = ({ user }: Props) => (
   <Menu as='div' className='dropdown dropdown-end'>
@@ -23,7 +23,7 @@ const Dropdown = ({ user }: Props) => (
             user?.picture
               ? (user?.picture as string)
               : `https://avatars.dicebear.com/api/initials/${
-                  user?.name || user?.nickname || "MU"
+                  user?.name || user?.nickname || 'MU'
                 }.svg`
           }
         />
