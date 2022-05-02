@@ -2,6 +2,72 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.3 (2022-05-02)
+
+
+### Features
+
+* add ambiguous theme support ([70f6982](https://github.com/raslan/muchfund/commit/70f698273c486003430bcfb0779de533fd179a41))
+* add app page ([22ce87f](https://github.com/raslan/muchfund/commit/22ce87fad3ab2e791395bccc52b08d4d7d050c92))
+* add auth on navbar ([ca40853](https://github.com/raslan/muchfund/commit/ca408537795c10610fa2bf02772ae45735746783))
+* add auth0 ([2ec7bcb](https://github.com/raslan/muchfund/commit/2ec7bcb6455498d145bb760b47a863087aa12323))
+* add base page ([5401c37](https://github.com/raslan/muchfund/commit/5401c37d69bad010198ae94aa199373b297f1bd5))
+* add budget calculation logic and use the extracted form component ([7371e35](https://github.com/raslan/muchfund/commit/7371e35bfafd05363184f6c2f94a0f7af7345636))
+* add daisyui demo page ([57fb90b](https://github.com/raslan/muchfund/commit/57fb90b67f9099d572e5ba1227c5b1a47fb87e5e))
+* add dark mode support for tailwind ([19c22f8](https://github.com/raslan/muchfund/commit/19c22f87f889ab33f24b7d0c14f4e5a8efcd424f))
+* add dropdown component ([ac19f42](https://github.com/raslan/muchfund/commit/ac19f4224e4873f227b92351f0f39474c7ed525c))
+* add finance types ([3aba384](https://github.com/raslan/muchfund/commit/3aba384b35ad321d6a5e7233e233837fed3ff9e1))
+* add home page boilerplate ([d07117a](https://github.com/raslan/muchfund/commit/d07117a4d0c5bec7289c7438c82beaf28816fa7b))
+* add initial dashboard stats view ([b2fba1d](https://github.com/raslan/muchfund/commit/b2fba1dc90da12704ccdffefaa16e6cbdd88bbd6))
+* add initials avatar ([1ac3aa3](https://github.com/raslan/muchfund/commit/1ac3aa31fed55157934ffa543668e4d3afaf8eba))
+* add isCurrencySelect prop to create currency select ([81f33ab](https://github.com/raslan/muchfund/commit/81f33ab91f51feaef68a4b14d14f5eb64ffd842e))
+* add loading component ([66cc58f](https://github.com/raslan/muchfund/commit/66cc58f3db41c4244efda0e4efbf8550e6714694))
+* add meta tags to layout component ([b356d7c](https://github.com/raslan/muchfund/commit/b356d7c48db9cb77c3825c942284315792fb1de7))
+* add more functionality to stat ([a286e5c](https://github.com/raslan/muchfund/commit/a286e5cac8823ebd2259bad1de8c1d765511e28c))
+* add more support for form component ([2437f23](https://github.com/raslan/muchfund/commit/2437f23e149c0f892b3baf7e5d22cc79854db7db))
+* add navbar and theme switcher ([301a04d](https://github.com/raslan/muchfund/commit/301a04d0d794b75cd71a4644b838ea86e0e159bb))
+* add new rates and budget stores ([081204c](https://github.com/raslan/muchfund/commit/081204c82f72db2dcce0b3e1b8117e3505a2bb9f))
+* add next image and auth ([5fa5801](https://github.com/raslan/muchfund/commit/5fa58010bce7675a4235164b173adc61a0d0d268))
+* add persistent login state ([0931ca0](https://github.com/raslan/muchfund/commit/0931ca083ebbff68b747e8c159c944899a986f52))
+* add postcss and cssnano ([c6ee8fc](https://github.com/raslan/muchfund/commit/c6ee8fca5e5a19d2a802e2502f92b8c6b3c71ec8))
+* add responsive sidebar ([97f4b5d](https://github.com/raslan/muchfund/commit/97f4b5d38b8df3765d7b977a6c3695cd0afff624))
+* add stat display ([946a3b7](https://github.com/raslan/muchfund/commit/946a3b7dbb3572659bf49547f5ccb80ab7d01dff))
+* add submit button component ([7cb5d3a](https://github.com/raslan/muchfund/commit/7cb5d3a89c38266527c45cf18940b82a54ae7e6f))
+* add tailwind config with daisyui ([70b956a](https://github.com/raslan/muchfund/commit/70b956abeb21b23c426864657a84f0981e73edd0))
+* add tailwindcss base styles ([d046417](https://github.com/raslan/muchfund/commit/d046417718fe3b408adca6019b46c2e61a3f1110))
+* add theme provider ([0199f5a](https://github.com/raslan/muchfund/commit/0199f5af4a1824f34730fc9cd404af595a6f0941))
+* add transition to dark mode switch ([119936c](https://github.com/raslan/muchfund/commit/119936c68d09618653515d43b72733bc0d0768e1))
+* add types for react-table ([73ee68f](https://github.com/raslan/muchfund/commit/73ee68fca8a1c733237cb332415f1316be8727bb))
+* add typescript ([743ec09](https://github.com/raslan/muchfund/commit/743ec095f119460fc89521f289102438069edfba))
+* add utility getCurrency ([08bc86a](https://github.com/raslan/muchfund/commit/08bc86a5e93da81b1f207df3627abb11b89b5eca))
+* add zustand and immer ([e64691f](https://github.com/raslan/muchfund/commit/e64691f5b0cff8386846da460467a97d7c6bb418))
+* create budget page ([efd2153](https://github.com/raslan/muchfund/commit/efd2153e8af0c17f32f7e6293f2e2ccab1aaa78b))
+* create button to switch themes ([3cf62e1](https://github.com/raslan/muchfund/commit/3cf62e14cb97289a62d0923492c2c6730066b922))
+* create currency exchange rate hook ([d4cb544](https://github.com/raslan/muchfund/commit/d4cb544b2b666357e753375098fb1f099566872c))
+* create CurrencyCode type ([dfc56c0](https://github.com/raslan/muchfund/commit/dfc56c0b4124f03e7b2859d0d6c332fc2e39370f))
+* create input component ([6e7cbbd](https://github.com/raslan/muchfund/commit/6e7cbbdf4871549b15b64c1e9af80d247d21c0c1))
+* create intl formatter ([ed842ed](https://github.com/raslan/muchfund/commit/ed842ed826a9226a0ab3f3e0cd49ab410f8ce846))
+* create layout wrapper ([78da950](https://github.com/raslan/muchfund/commit/78da95037cc0be80ec5edb099a41fe98e0417daf))
+* create modal component ([964186a](https://github.com/raslan/muchfund/commit/964186ac737d352aa5ab127d6f44fe5e2d9154ff))
+* create new budget interface ([81db876](https://github.com/raslan/muchfund/commit/81db8762f8af2a04ab8632ba2efcd5e2e1d0a7f9))
+* create select component ([fd037d8](https://github.com/raslan/muchfund/commit/fd037d8286680170649b4a49be1da908b64492d2))
+* create table component ([4b4e52e](https://github.com/raslan/muchfund/commit/4b4e52e2d9141846e685137eff329f53ddba8a30))
+* extend dashboard stats ([d74792e](https://github.com/raslan/muchfund/commit/d74792eb9d6d68af210df5f065505e862df06e66))
+* extend dinero lib with more helper functions and docs ([664f357](https://github.com/raslan/muchfund/commit/664f35709f7820c8902ba20449939cd9ed6f3cba))
+* extract the form component from budget page and add budget calculations ([4e5824d](https://github.com/raslan/muchfund/commit/4e5824dfcdd2642d1c7aef731949cb00a90804f8))
+* fix padding in budget page ([d6c1a45](https://github.com/raslan/muchfund/commit/d6c1a458f0d6c53e4ba5665210c32322deb0749c))
+* initialize tailwind ([e249148](https://github.com/raslan/muchfund/commit/e249148cf366ace522bd17609efd720ace9421fb))
+* rename useCurrency hook and add conversion logic ([ec28826](https://github.com/raslan/muchfund/commit/ec288264e37d0b8dfb181aa9a6d82845b9ee0180))
+* replace popover with dropdown ([cd27435](https://github.com/raslan/muchfund/commit/cd274356048ce9ecf860ee0f27d75e1ea0ce9123))
+* setup ApolloClient ([84e28a1](https://github.com/raslan/muchfund/commit/84e28a1d6d1259d067d5d8687e5b6e45c9c48b80))
+* use ApolloProvider ([79659d6](https://github.com/raslan/muchfund/commit/79659d674bcf4a96c89014086a145f93741d76c3))
+
+
+### Bug Fixes
+
+* adjust width on select component ([34aad72](https://github.com/raslan/muchfund/commit/34aad7221ba436bb313db6a6d24f94aee82bb429))
+* rename folders ([c82e6de](https://github.com/raslan/muchfund/commit/c82e6de3e569231c8fdf347001a3594c62457248))
+
 ### 0.0.2 (2022-05-01)
 
 
