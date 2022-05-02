@@ -1,6 +1,6 @@
-import * as AllCurrencies from '@dinero.js/currencies';
 import Input from 'components/atomic/Input';
 import Select from 'components/atomic/Select';
+import SubmitButton from 'components/atomic/SubmitButton';
 import { dinero, Dinero } from 'dinero.js';
 import { CurrencyCode, getCurrency } from 'lib/dinero';
 import { Dispatch, SetStateAction } from 'react';
@@ -61,7 +61,7 @@ const Form = ({ className, list, setList, budgetMutate, title }: Props) => {
         />
 
         <Select
-          options={Object.keys(AllCurrencies)}
+          isCurrencySelect
           control={control}
           fieldName='currency'
           defaultValue='USD'
@@ -70,12 +70,7 @@ const Form = ({ className, list, setList, budgetMutate, title }: Props) => {
           required
         />
 
-        <button
-          type='submit'
-          className='btn btn-ghost hover:text-base-content bg-primary-focus text-secondary-content mt-3'
-        >
-          Add
-        </button>
+        <SubmitButton text='Add' />
       </form>
     </div>
   );
