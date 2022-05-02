@@ -1,7 +1,7 @@
 name: Add contributors
 on:
   schedule:
-    - cron:  '15 16 * * *'
+    - cron:  '25 16 * * *'
 
 jobs:
   add-contributors:
@@ -18,4 +18,5 @@ jobs:
         PATH: '/README.md'
         COMMIT_MESSAGE: 'docs(README): update contributors'
         AVATAR_SHAPE: 'round'
-        PULL_REQUEST: "main"
+        PULL_REQUEST: 'yes'
+        BRANCH: 'main'
