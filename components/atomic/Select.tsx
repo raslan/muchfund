@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useMemo } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { Control, Controller, UseFormStateReturn } from 'react-hook-form';
+import { Currencies, CurrencyCode, getCurrencyName } from 'lib/dinero';
 
 const Select = ({
   options,
@@ -11,16 +12,23 @@ const Select = ({
   required,
   errors,
   type = 'currency',
+  isCurrencySelect = false,
 }: Props) => {
   const [query, setQuery] = useState('');
-  const currencyNames = useMemo(
-    () => new Intl.DisplayNames(['en'], { type: 'currency' }),
-    []
-  );
+
+  const selectOptions = useMemo(() => {
+    if (isCurrencySelect) {
+      return Object.keys(Currencies);
+    } else if (options) {
+      return options;
+    }
+    return [];
+  }, [options, isCurrencySelect]);
+
   const filteredOptions =
     query === ''
-      ? options
-      : options.filter((option) =>
+      ? selectOptions
+      : selectOptions.filter((option) =>
           option
             .toLowerCase()
             .replace(/\s+/g, '')
@@ -95,7 +103,7 @@ const Select = ({
                                 }`}
                               >
                                 {type === 'currency'
-                                  ? `${currencyNames.of(option)} (${option})`
+                                  ? getCurrencyName(option as CurrencyCode)
                                   : option}
                               </span>
                               {selected ? (
@@ -149,9 +157,10 @@ type Props = {
   errors?: UseFormStateReturn<any>['errors'];
   fieldName: string;
   label: string;
-  options: string[];
+  options?: string[];
   required?: boolean;
   type?: 'currency' | 'select';
+  isCurrencySelect?: boolean;
 };
 
 export default Select;
