@@ -1,5 +1,6 @@
 import { UserProfile } from '@auth0/nextjs-auth0';
 import { Menu, Transition } from '@headlessui/react';
+import { isDev } from 'lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import ThemeSwitcher from './ThemeSwitcher';
@@ -51,6 +52,15 @@ const Dropdown = ({ user }: Props) => (
             <button className='justify-between btn btn-ghost'>Settings</button>
           </li>
         </Menu.Item> */}
+        {isDev() && (
+          <Menu.Item>
+            <li>
+              <Link href='/dashboard' passHref>
+                <a className='justify-between btn btn-ghost'>Dashboard</a>
+              </Link>
+            </li>
+          </Menu.Item>
+        )}
         <Menu.Item>
           <li>
             <Link href='/api/auth/logout' passHref>
