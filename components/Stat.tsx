@@ -1,11 +1,7 @@
 const Stat = ({ title, value, desc = '', transparent = false }: Props) => {
   return (
     <div
-      className={`stat group p-3 gap-2 rounded-md border-2 shadow-sm ${
-        transparent
-          ? 'border-blue-900 shadow-red-800'
-          : 'border-blue-600 shadow-purple-800'
-      }  lg:max-w-sm`}
+      className={`stat group p-3 gap-2 rounded-md border-2 shadow-sm border-primary shadow-accent lg:max-w-sm`}
     >
       <button className='lg:hidden stat-figure group-hover:grid h-full text-primary justify-center'>
         <svg
