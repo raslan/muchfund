@@ -27,7 +27,7 @@ const Input = ({
             {...field}
             className={`${className} ${
               errors?.[fieldName] ? 'border-red-500' : ''
-            } bg-transparent border-base-content w-full border py-2 px-2`}
+            } bg-transparent border-base-content focus:border-primary w-full border py-2 px-2`}
           />
         )}
       />
