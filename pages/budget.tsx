@@ -1,5 +1,6 @@
 import Modal from 'components/atomic/Modal';
 import Table from 'components/atomic/Table';
+import AuthWrapper from 'components/AuthWrapper';
 import Form from 'components/budget/Form';
 import DashboardStats from 'components/dashboard/DashboardStats';
 import Navbar from 'components/Navbar';
@@ -74,93 +75,95 @@ const Budget: NextPage = () => {
   }, [totalIncomeMemo, totalExpensesMemo, setBudgetStoreValue]);
 
   return (
-    <div>
-      <div className='h-full w-full flex flex-col justify-center'>
-        <>
-          <Navbar />
-          <Sidebar>
-            <h1 className='text-6xl mb-10 font-semibold'>Budget</h1>
-            <div className='mb-12'>
-              <DashboardStats />
-            </div>
-            <div className='text-5xl grid grid-cols-2 items-center max-w-max mb-8'>
-              <h2>Income</h2>
-              <button
-                className='btn btn-outline border-primary-focus rounded-sm hover:bg-primary hover:text-primary-content w-max ml-auto lg:ml-4 text-2xl leading-none font-light'
-                onClick={() => {
-                  setShowIncome(true);
-                }}
-              >
-                +
-              </button>
-            </div>
+    <AuthWrapper>
+      <div>
+        <div className='h-full w-full flex flex-col justify-center'>
+          <>
+            <Navbar />
+            <Sidebar>
+              <h1 className='text-6xl mb-10 font-semibold'>Budget</h1>
+              <div className='mb-12'>
+                <DashboardStats />
+              </div>
+              <div className='text-5xl grid grid-cols-2 items-center max-w-max mb-8'>
+                <h2>Income</h2>
+                <button
+                  className='btn btn-outline border-primary-focus rounded-sm hover:bg-primary hover:text-primary-content w-max ml-auto lg:ml-4 text-2xl leading-none font-light'
+                  onClick={() => {
+                    setShowIncome(true);
+                  }}
+                >
+                  +
+                </button>
+              </div>
 
-            {showIncome && (
-              <Modal
-                isOpen={showIncome}
-                onClose={() => {
-                  setShowIncome(false);
-                }}
-              >
-                <Form
-                  title='Add income'
-                  className='border shadow-sm shadow-base-content'
-                  list={income}
-                  setList={setIncome}
-                  budgetMutate={addIncome}
-                />
-              </Modal>
-            )}
+              {showIncome && (
+                <Modal
+                  isOpen={showIncome}
+                  onClose={() => {
+                    setShowIncome(false);
+                  }}
+                >
+                  <Form
+                    title='Add income'
+                    className='border shadow-sm shadow-base-content'
+                    list={income}
+                    setList={setIncome}
+                    budgetMutate={addIncome}
+                  />
+                </Modal>
+              )}
 
-            <div className='mb-8'>
-              <Table
-                tableData={income.map((item) => ({
-                  name: item.name,
-                  amount: getNumberFromDinero(item.amount),
-                  currency: getCurrencyCode(item.amount),
-                }))}
-              />
-            </div>
-            <div className='text-5xl grid grid-cols-2 items-center max-w-max mb-8'>
-              <h2>Expenses</h2>
-              <button
-                className='btn btn-outline border-primary-focus rounded-sm hover:bg-primary hover:text-primary-content w-max ml-auto lg:ml-4 text-2xl leading-none font-light'
-                onClick={() => {
-                  setShowExpenses(true);
-                }}
-              >
-                +
-              </button>
-            </div>
-            {showExpenses && (
-              <Modal
-                isOpen={showExpenses}
-                onClose={() => {
-                  setShowExpenses(false);
-                }}
-              >
-                <Form
-                  title='Add expense'
-                  className='border shadow-sm shadow-base-content'
-                  list={expenses}
-                  setList={setExpenses}
-                  budgetMutate={addExpense}
+              <div className='mb-8'>
+                <Table
+                  tableData={income.map((item) => ({
+                    name: item.name,
+                    amount: getNumberFromDinero(item.amount),
+                    currency: getCurrencyCode(item.amount),
+                  }))}
                 />
-              </Modal>
-            )}
-            <div className='mb-10'>
-              <Table
-                tableData={expenses.map((item) => ({
-                  name: item.name,
-                  amount: getNumberFromDinero(item.amount),
-                  currency: getCurrencyCode(item.amount),
-                }))}
-              />
-            </div>
-          </Sidebar>
-        </>
+              </div>
+              <div className='text-5xl grid grid-cols-2 items-center max-w-max mb-8'>
+                <h2>Expenses</h2>
+                <button
+                  className='btn btn-outline border-primary-focus rounded-sm hover:bg-primary hover:text-primary-content w-max ml-auto lg:ml-4 text-2xl leading-none font-light'
+                  onClick={() => {
+                    setShowExpenses(true);
+                  }}
+                >
+                  +
+                </button>
+              </div>
+              {showExpenses && (
+                <Modal
+                  isOpen={showExpenses}
+                  onClose={() => {
+                    setShowExpenses(false);
+                  }}
+                >
+                  <Form
+                    title='Add expense'
+                    className='border shadow-sm shadow-base-content'
+                    list={expenses}
+                    setList={setExpenses}
+                    budgetMutate={addExpense}
+                  />
+                </Modal>
+              )}
+              <div className='mb-10'>
+                <Table
+                  tableData={expenses.map((item) => ({
+                    name: item.name,
+                    amount: getNumberFromDinero(item.amount),
+                    currency: getCurrencyCode(item.amount),
+                  }))}
+                />
+              </div>
+            </Sidebar>
+          </>
+        </div>
       </div>
-    </div>
+    </AuthWrapper>
   );
 };
 
