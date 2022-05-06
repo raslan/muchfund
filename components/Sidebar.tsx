@@ -3,7 +3,7 @@ import Link from 'next/link';
 const tabs = [
   {
     index: 0,
-    link: '/',
+    link: '/dashboard',
     title: 'Dashboard',
     icon: (
       <svg
