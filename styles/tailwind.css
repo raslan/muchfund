@@ -1,7 +1,7 @@
 @tailwind base;
 
 [data-theme] {
-  @apply transition duration-300 ease-in-out transform bg-base-200;
+  @apply transition duration-300 ease-in-out transform bg-base-300;
 }
 
 @tailwind components;
