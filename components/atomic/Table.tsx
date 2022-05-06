@@ -29,7 +29,7 @@ function GlobalFilter({
     <label className='grid grid-cols-1 gap-1 my-4'>
       <p>Search</p>
       <input
-        className='input input-sm h-10 border-slate-700 focus:border-purple-700 focus:outline-none max-w-xs rounded-sm'
+        className='input input-sm h-10 border-slate-700 focus:border-primary focus:outline-none max-w-xs rounded-sm'
         value={value || ''}
         onChange={(e) => {
           setValue(e.target.value);
@@ -41,7 +41,7 @@ function GlobalFilter({
   );
 }
 
-const Table = ({ className, tableData }: Props) => {
+const Table = ({ className = '', tableData }: Props) => {
   const data = useMemo(() => tableData, [tableData]);
 
   const columns: Column[] = useMemo(
@@ -84,7 +84,7 @@ const Table = ({ className, tableData }: Props) => {
         globalFilter={state.globalFilter}
         setGlobalFilter={setGlobalFilter}
       />
-      <div className='border rounded-lg border-base-300 bg-base-200 text-base-content shadow-md overflow-x-auto max-w-6xl'>
+      <div className='border rounded-lg border-base-300 bg-base-100 text-base-content shadow-md overflow-x-auto max-w-6xl'>
         <table
           className='table table-compact lg:table-fixed lg:table-normal saturate-150 table-zebra w-full bg-transparent'
           {...getTableProps()}
@@ -122,19 +122,19 @@ const Table = ({ className, tableData }: Props) => {
               return (
                 <Fragment key={index}>
                   <tr
+                    {...row.getRowProps()}
                     role='button'
-                    className='cursor-pointer hover'
+                    className='cursor-pointer hover bg-base-100'
                     onClick={() =>
                       alert('You clicked on ' + JSON.stringify(row.original))
                     }
-                    {...row.getRowProps()}
                     key={index}
                   >
                     {row.cells.map((cell, index) => {
                       return (
                         <Fragment key={index}>
                           <td
-                            className='max-w-xs text-ellipsis overflow-hidden'
+                            className='max-w-xs text-ellipsis overflow-hidden bg-transparent'
                             {...cell.getCellProps()}
                           >
                             {cell.render('Cell')}
