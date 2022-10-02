@@ -5,6 +5,7 @@ import client from 'lib/apollo';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import 'styles/tailwind.css';
+import 'regenerator-runtime';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
