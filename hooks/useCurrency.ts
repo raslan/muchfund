@@ -19,36 +19,16 @@ const useCurrency = () => {
     async (currency: string = 'USD') => {
       setError(null);
       try {
-        const response = await axios.get(
+        const { data } = await axios.get(
           `${process.env.NEXT_PUBLIC_CURRENCY_API}?currency=${currency}`
         );
-        const formattedRates = Object.entries(response.data.data.rates)
-          .map(([key, value]: any) => {
-            let amount = value;
-            let trimmedSub = '';
-            let scale = 0;
-
-            if (value.includes('.')) {
-              let splitValue = value.split('.');
-              trimmedSub = splitValue[1].substring(0, 8);
-              amount = `${splitValue[0]}${trimmedSub}`;
-            }
-
-            return {
-              [key]: {
-                amount: +amount ?? +value,
-                scale: trimmedSub?.length ?? scale,
-              },
-            };
-          })
-          .reduce((acc, curr) => ({ ...acc, ...curr }), {});
         setCurrencyStoreValue({
           rates: {
             ...rates,
-            [currency]: formattedRates,
+            [currency]: data?.formattedRates,
           },
         });
-        return formattedRates;
+        return data?.formattedRates;
       } catch (error) {
         setError(error);
       }
@@ -63,12 +43,12 @@ const useCurrency = () => {
   const getConvertedAmount = useCallback(
     async (amount: Dinero<number>) => {
       const currencyCode = toSnapshot(amount).currency.code;
-      const isUSD = currencyCode !== 'USD';
+      const isNotUSD = currencyCode !== 'USD';
       let tempRates;
-      if (!rates?.[currencyCode] && isUSD) {
+      if (!rates?.[currencyCode] && isNotUSD) {
         tempRates = await refresh(currencyCode);
       }
-      const convertedAmount = isUSD
+      const convertedAmount = isNotUSD
         ? convert(
             amount,
             Currencies.USD,
